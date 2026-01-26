@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hari Jadian Kita ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #2b1055, #000);
+      color: #fff;
+      overflow: hidden;
+    }.container {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #ffb6c1;
+  text-shadow: 0 0 15px rgba(255,182,193,0.8);
+}
+
+.subtitle {
+  opacity: 0.9;
+  margin-bottom: 25px;
+}
+
+/* Kalender */
+.calendar {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  max-width: 360px;
+  width: 100%;
+}
+
+.calendar-header {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.day-name {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.day {
+  padding: 10px 0;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  font-size: 0.9rem;
+}
+
+.special {
+  background: linear-gradient(135deg, #ff4d6d, #ff85a1);
+  box-shadow: 0 0 15px rgba(255,77,109,0.8);
+  font-weight: bold;
+  position: relative;
+}
+
+.special::after {
+  content: '❤️';
+  position: absolute;
+  top: -10px;
+  right: -6px;
+  font-size: 0.9rem;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+.caption {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: #ffd1dc;
+}
+
+/* Tombol */
+.btn-love {
+  margin-top: 30px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff4d6d, #ff85a1);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255,77,109,0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-love:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(255,77,109,0.7);
+}
+
+.romantic-text {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  max-width: 500px;
+  line-height: 1.6;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.romantic-text.show {
+  opacity: 1;
+}
+
+/* Love mengambang */
+.hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.heart {
+  position: absolute;
+  bottom: -50px;
+  color: rgba(255, 105, 180, 0.8);
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-110vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div class="hearts" id="hearts"></div>  <div class="container">
+    <h1>Hari Jadian Kita ❤️</h1>
+    <div class="subtitle">18 Januari 2026</div><div class="calendar">
+  <div class="calendar-header">Januari 2026</div>
+  <div class="days">
+    <div class="day-name">Min</div>
+    <div class="day-name">Sen</div>
+    <div class="day-name">Sel</div>
+    <div class="day-name">Rab</div>
+    <div class="day-name">Kam</div>
+    <div class="day-name">Jum</div>
+    <div class="day-name">Sab</div>
+
+    <!-- Januari 2026 dimulai hari Kamis -->
+    <div></div><div></div><div></div><div></div>
+    <div class="day">1</div>
+    <div class="day">2</div>
+    <div class="day">3</div>
+
+    <div class="day">4</div>
+    <div class="day">5</div>
+    <div class="day">6</div>
+    <div class="day">7</div>
+    <div class="day">8</div>
+    <div class="day">9</div>
+    <div class="day">10</div>
+
+    <div class="day">11</div>
+    <div class="day">12</div>
+    <div class="day">13</div>
+    <div class="day">14</div>
+    <div class="day">15</div>
+    <div class="day">16</div>
+    <div class="day">17</div>
+
+    <div class="day special">18</div>
+    <div class="day">19</div>
+    <div class="day">20</div>
+    <div class="day">21</div>
+    <div class="day">22</div>
+    <div class="day">23</div>
+    <div class="day">24</div>
+
+    <div class="day">25</div>
+    <div class="day">26</div>
+    <div class="day">27</div>
+    <div class="day">28</div>
+    <div class="day">29</div>
+    <div class="day">30</div>
+    <div class="day">31</div>
+  </div>
+  <div class="caption">❤️ 18 Januari 2026 adalah hari jadian kita</div>
+</div>
+
+<button class="btn-love" onclick="showLove()">Klik Aku ❤️</button>
+
+<div class="romantic-text" id="romanticText">
+  Sejak hari itu, 18 Januari 2026, dunia terasa lebih hangat.
+  Terima kasih sudah hadir, bertahan, dan memilih untuk berjalan
+  bersamaku. Aku harap setiap hari ke depan selalu dipenuhi cinta,
+  tawa, dan rasa saling memiliki. 💕
+</div>
+
+  </div>  <script>
+    function showLove() {
+      document.getElementById('romanticText').classList.add('show');
+    }
+
+    const heartsContainer = document.getElementById('hearts');
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = 12 + Math.random() * 20 + 'px';
+      const duration = 5 + Math.random() * 5;
+      heart.style.animationDuration = duration + 's';
+
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, duration * 1000);
+    }
+
+    setInterval(createHeart, 400);
+  </script></body>
+</html>
