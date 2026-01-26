@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hari Jadian Kita ❤️</title>
+<title>Our Special Day ❤️</title>
+
+<!-- Sweet Font -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,500&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 body{
   margin:0;
-  font-family:'Poppins',sans-serif;
+  font-family:'Quicksand',sans-serif;
   background:radial-gradient(circle at top,#2b1055,#000);
   color:#fff;
   overflow-x:hidden;
@@ -35,9 +38,10 @@ body::after{
 }
 
 h1{
-  font-size:2rem;
+  font-family:'Playfair Display',serif;
+  font-size:2.1rem;
   color:#ffccd5;
-  text-shadow:0 0 12px rgba(255,204,213,.6);
+  text-shadow:0 0 14px rgba(255,204,213,.7);
 }
 
 .subtitle{opacity:.9;margin-bottom:8px}
@@ -95,8 +99,8 @@ h1{
 .caption{margin-top:15px;color:#ffd1dc}
 
 .btn-love{
-  margin-top:26px;
-  padding:12px 28px;
+  margin-top:22px;
+  padding:12px 30px;
   border:none;
   border-radius:999px;
   background:linear-gradient(135deg,#ff4d6d,#ff85a1);
@@ -106,7 +110,7 @@ h1{
   box-shadow:0 10px 25px rgba(255,77,109,.5);
 }
 
-.music-btn{
+.music-btn,.question-btn{
   margin-top:14px;
   font-size:.95rem;
   cursor:pointer;
@@ -115,13 +119,24 @@ h1{
 
 .romantic-text{
   margin-top:24px;
-  max-width:520px;
+  max-width:540px;
   background:rgba(255,255,255,.08);
   padding:16px;
   border-radius:14px;
-  line-height:1.7;
+  line-height:1.8;
   min-height:120px;
 }
+
+.answer{
+  margin-top:18px;
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem;
+  color:#ffb6c1;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+
+.answer.show{opacity:1}
 
 .hearts{
   position:fixed;
@@ -137,11 +152,11 @@ h1{
 }
 
 @keyframes floatUp{
-  to{transform:translateY(-110vh);opacity:0}
+  to{transform:translateY(-120vh);opacity:0}
 }
 
 @media(max-width:480px){
-  h1{font-size:1.6rem}
+  h1{font-size:1.7rem}
   .btn-love{width:100%;max-width:280px}
 }
 </style>
@@ -152,16 +167,15 @@ h1{
 <div class="hearts" id="hearts"></div>
 
 <div class="container">
-  <h1>Hari yang Mengawali Segalanya</h1>
-  <div class="subtitle">18 Januari 2026</div>
+  <h1>The Day That Started Everything</h1>
+  <div class="subtitle">January 18, 2026</div>
   <div id="counter"></div>
 
   <div class="calendar">
-    <div class="calendar-header">Januari 2026</div>
+    <div class="calendar-header">January 2026</div>
     <div class="days">
-      <div class="day-name">Min</div><div class="day-name">Sen</div><div class="day-name">Sel</div>
-      <div class="day-name">Rab</div><div class="day-name">Kam</div><div class="day-name">Jum</div><div class="day-name">Sab</div>
-
+      <div class="day-name">Sun</div><div class="day-name">Mon</div><div class="day-name">Tue</div>
+      <div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div><div class="day-name">Sat</div>
       <div></div><div></div><div></div><div></div>
       <div class="day">1</div><div class="day">2</div><div class="day">3</div>
       <div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div>
@@ -174,13 +188,15 @@ h1{
       <div class="day">25</div><div class="day">26</div><div class="day">27</div>
       <div class="day">28</div><div class="day">29</div><div class="day">30</div><div class="day">31</div>
     </div>
-    <div class="caption">❤️ Hari jadian kita</div>
+    <div class="caption">❤️ Our anniversary</div>
   </div>
 
-  <button class="btn-love" onclick="startLove()">Klik Aku ❤️</button>
-  <div class="music-btn" onclick="toggleMusic()">🎵 Putar / Pause Lagu</div>
+  <button class="btn-love" onclick="startLove()">Click Me ❤️</button>
+  <div class="music-btn" onclick="toggleMusic()">🎵 Play / Pause Music</div>
+  <div class="question-btn" onclick="showAnswer()">💌 How much do I love you?</div>
 
   <div class="romantic-text" id="romanticText"></div>
+  <div class="answer" id="answerText">I love you in every universe ✨</div>
 </div>
 
 <audio id="bgMusic" preload="auto">
@@ -193,58 +209,69 @@ const start = new Date('2026-01-18');
 const today = new Date();
 const diff = Math.floor((today-start)/(1000*60*60*24));
 document.getElementById('counter').innerHTML =
-  diff>=0 ? `Sudah <b>${diff}</b> hari kita bersama`
-          : `Menuju hari itu dalam <b>${Math.abs(diff)}</b> hari`;
+  diff>=0 ? `We have been together for <b>${diff}</b> days`
+          : `Counting down <b>${Math.abs(diff)}</b> days to our beginning`;
 
-/* TYPING EFFECT */
+/* TYPING */
 const message =
-"18 Januari 2026 bukan sekadar tanggal. Ia adalah awal dari cerita yang kita pilih untuk dijalani perlahan, saling percaya, dan tumbuh bersama.";
+"January 18, 2026 is not just a date. It is the beginning of a story we chose to live gently, with trust, love, and growth. No matter where life takes us, may we always find our way back to each other.";
 
-let typingInterval = null;
-
+let typingInterval=null;
 function startLove(){
-  const box = document.getElementById("romanticText");
-  box.innerHTML = "";
-
-  if (typingInterval) clearInterval(typingInterval);
-
-  let i = 0;
-  typingInterval = setInterval(()=>{
-    box.innerHTML += message.charAt(i);
+  const box=document.getElementById("romanticText");
+  box.innerHTML="";
+  if(typingInterval)clearInterval(typingInterval);
+  let i=0;
+  typingInterval=setInterval(()=>{
+    box.innerHTML+=message.charAt(i);
     i++;
-    if(i >= message.length) clearInterval(typingInterval);
+    if(i>=message.length)clearInterval(typingInterval);
   },40);
-
   box.scrollIntoView({behavior:"smooth",block:"center"});
 }
 
 /* MUSIC */
-const music = document.getElementById("bgMusic");
-let playing = false;
-
+const music=document.getElementById("bgMusic");
+let playing=false;
 function toggleMusic(){
-  music.volume = 0.5;
+  music.volume=0.5;
   if(!playing){
     music.play().then(()=>playing=true)
-    .catch(()=>alert("Klik sekali lagi untuk memutar musik 🎵"));
+    .catch(()=>alert("Tap again to play the music 🎵"));
   }else{
-    music.pause();
-    playing = false;
+    music.pause(); playing=false;
   }
 }
 
-/* HEARTS */
-const hearts = document.getElementById("hearts");
+/* HEARTS FLOAT */
+const hearts=document.getElementById("hearts");
 setInterval(()=>{
   const h=document.createElement("div");
   h.className="heart";
   h.innerHTML="❤️";
   h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=12+Math.random()*20+"px";
+  h.style.fontSize=14+Math.random()*22+"px";
   h.style.animationDuration=5+Math.random()*5+"s";
   hearts.appendChild(h);
   setTimeout(()=>h.remove(),8000);
 },400);
+
+/* LOVE EXPLOSION */
+function showAnswer(){
+  const ans=document.getElementById("answerText");
+  ans.classList.add("show");
+
+  for(let i=0;i<80;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=18+Math.random()*30+"px";
+    h.style.animationDuration=2+Math.random()*3+"s";
+    hearts.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  }
+}
 </script>
 
 </body>
