@@ -9,18 +9,11 @@
       font-family: 'Poppins', sans-serif;
       background: radial-gradient(circle at top, #2b1055, #000);
       color: #fff;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
     }.container {
-  position: relative;
-  z-index: 2;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  text-align: center;
-}
+
+position: relative; z-index: 2; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
 
 h1 {
 
@@ -233,9 +226,16 @@ opacity: 1; transform: translateY(0); }
     function showLove() {
   const text = document.getElementById('romanticText');
   text.classList.add('show');
+  text.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
   const music = document.getElementById('bgMusic');
-  music.volume = 0.4;
-  music.play().catch(()=>{});
+  if (music) {
+    music.volume = 0.4;
+    music.play().catch(err => {
+      console.log('Autoplay dicegah, tap ulang tombol untuk musik');
+    });
+  }
+});
 }
 
     const heartsContainer = document.getElementById('hearts');
