@@ -23,11 +23,8 @@
 }
 
 h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  color: #ffb6c1;
-  text-shadow: 0 0 15px rgba(255,182,193,0.8);
-}
+
+font-size: 2.1rem; margin-bottom: 8px; color: #ffccd5; font-weight: 600; letter-spacing: 0.5px; text-shadow: 0 0 12px rgba(255,204,213,0.6); }
 
 .subtitle {
   opacity: 0.9;
@@ -116,17 +113,12 @@ h1 {
 }
 
 .romantic-text {
-  margin-top: 20px;
-  font-size: 1.1rem;
-  max-width: 500px;
-  line-height: 1.6;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
+
+margin-top: 20px; font-size: 1rem; max-width: 520px; line-height: 1.7; padding: 14px 16px; background: rgba(255,255,255,0.08); border-radius: 14px; backdrop-filter: blur(6px); opacity: 0; transform: translateY(10px); transition: opacity 0.6s ease, transform 0.6s ease; }
 
 .romantic-text.show {
-  opacity: 1;
-}
+
+opacity: 1; transform: translateY(0); }
 
 /* Love mengambang */
 .hearts {
@@ -158,12 +150,25 @@ h1 {
   }
 }
 
-  </style>
+@media (max-width: 480px) { h1 { font-size: 1.7rem; }
+
+.calendar { padding: 16px; }
+
+.day { padding: 8px 0; font-size: 0.8rem; }
+
+.btn-love { width: 100%; max-width: 280px; font-size: 0.95rem; }
+
+.romantic-text { font-size: 0.95rem; } }
+
+/* Glow malam */ body::after{ content:''; position:fixed; inset:0; background:radial-gradient(circle at bottom, rgba(255,182,193,0.12), transparent 60%); pointer-events:none; }
+
+</style>
 </head>
 <body>
   <div class="hearts" id="hearts"></div>  <div class="container">
-    <h1>Hari Jadian Kita ❤️</h1>
-    <div class="subtitle">18 Januari 2026</div><div class="calendar">
+    <h1>Hari yang Mengawali Segalanya</h1>
+    <div class="subtitle">18 Januari 2026</div>
+<div id="counter" style="margin-bottom:18px;font-size:0.95rem;opacity:0.85;"></div><div class="calendar">
   <div class="calendar-header">Januari 2026</div>
   <div class="days">
     <div class="day-name">Min</div>
@@ -218,16 +223,20 @@ h1 {
 <button class="btn-love" onclick="showLove()">Klik Aku ❤️</button>
 
 <div class="romantic-text" id="romanticText">
-  Sejak hari itu, 18 Januari 2026, dunia terasa lebih hangat.
-  Terima kasih sudah hadir, bertahan, dan memilih untuk berjalan
-  bersamaku. Aku harap setiap hari ke depan selalu dipenuhi cinta,
-  tawa, dan rasa saling memiliki. 💕
-</div>
 
-  </div>  <script>
+18 Januari 2026 bukan sekadar tanggal. Ia adalah awal dari cerita yang kita pilih untuk jalani dengan tenang, saling percaya, dan tumbuh bersama. Semoga langkah ini selalu membawa kita pulang satu sama lain. 🤍
+
+</div>
+  </div>  <audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_8b5c4c7a89.mp3" type="audio/mpeg">
+</audio><script>
     function showLove() {
-      document.getElementById('romanticText').classList.add('show');
-    }
+  const text = document.getElementById('romanticText');
+  text.classList.add('show');
+  const music = document.getElementById('bgMusic');
+  music.volume = 0.4;
+  music.play().catch(()=>{});
+}
 
     const heartsContainer = document.getElementById('hearts');
 
@@ -248,5 +257,19 @@ h1 {
     }
 
     setInterval(createHeart, 400);
+
+// Counter hari jadian
+const startDate = new Date('2026-01-18');
+const today = new Date();
+const diffTime = today - startDate;
+const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+const counter = document.getElementById('counter');
+if(diffDays >= 0){
+  counter.innerHTML = `Sudah <b>${diffDays}</b> hari kita berjalan bersama`;
+}else{
+  counter.innerHTML = `Menuju hari itu dalam <b>${Math.abs(diffDays)}</b> hari`;
+}
+
   </script></body>
 </html>
