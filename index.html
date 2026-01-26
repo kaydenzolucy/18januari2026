@@ -1,229 +1,238 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hari Jadian Kita ❤️</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top, #2b1055, #000);
-      color: #fff;
-      overflow-x: hidden;
-      overflow-y: auto;
-    }body::after{
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hari Jadian Kita ❤️</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:radial-gradient(circle at top,#2b1055,#000);
+  color:#fff;
+  overflow-x:hidden;
+}
+
+body::after{
   content:'';
   position:fixed;
   inset:0;
-  background:radial-gradient(circle at bottom, rgba(255,182,193,0.12), transparent 60%);
+  background:radial-gradient(circle at bottom,rgba(255,182,193,.12),transparent 60%);
   pointer-events:none;
 }
 
-.container {
-  position: relative;
-  z-index: 2;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  text-align: center;
+.container{
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+  z-index:2;
+  position:relative;
 }
 
-h1 {
-  font-size: 2.1rem;
-  margin-bottom: 8px;
-  color: #ffccd5;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-shadow: 0 0 12px rgba(255,204,213,0.6);
+h1{
+  font-size:2rem;
+  color:#ffccd5;
+  text-shadow:0 0 12px rgba(255,204,213,.6);
 }
 
-.subtitle {
-  opacity: 0.9;
-  margin-bottom: 10px;
+.subtitle{opacity:.9;margin-bottom:10px}
+#counter{font-size:.95rem;opacity:.85;margin-bottom:18px}
+
+.calendar{
+  background:rgba(255,255,255,.1);
+  backdrop-filter:blur(10px);
+  border-radius:20px;
+  padding:20px;
+  max-width:360px;
+  width:100%;
+  box-shadow:0 20px 40px rgba(0,0,0,.4);
 }
 
-#counter {
-  margin-bottom: 18px;
-  font-size: 0.95rem;
-  opacity: 0.85;
+.calendar-header{
+  font-size:1.3rem;
+  margin-bottom:15px;
+  font-weight:600;
 }
 
-.calendar {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  max-width: 360px;
-  width: 100%;
+.days{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:8px;
 }
 
-.calendar-header {
-  font-size: 1.3rem;
-  margin-bottom: 15px;
-  font-weight: 600;
+.day-name{font-size:.75rem;opacity:.7}
+
+.day{
+  padding:10px 0;
+  border-radius:10px;
+  background:rgba(255,255,255,.08);
 }
 
-.days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+.special{
+  background:linear-gradient(135deg,#ff4d6d,#ff85a1);
+  box-shadow:0 0 15px rgba(255,77,109,.8);
+  font-weight:bold;
+  position:relative;
 }
 
-.day-name { font-size: 0.75rem; opacity: 0.7; }
-
-.day {
-  padding: 10px 0;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.08);
-  font-size: 0.9rem;
+.special::after{
+  content:'❤️';
+  position:absolute;
+  top:-10px;
+  right:-6px;
+  animation:pulse 1.5s infinite;
 }
 
-.special {
-  background: linear-gradient(135deg, #ff4d6d, #ff85a1);
-  box-shadow: 0 0 15px rgba(255,77,109,0.8);
-  font-weight: bold;
-  position: relative;
-}
-
-.special::after {
-  content: '❤️';
-  position: absolute;
-  top: -10px;
-  right: -6px;
-  font-size: 0.9rem;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0%,100%{transform:scale(1)}
+@keyframes pulse{
   50%{transform:scale(1.3)}
 }
 
-.caption {
-  margin-top: 15px;
-  font-size: 0.95rem;
-  color: #ffd1dc;
+.caption{margin-top:15px;color:#ffd1dc}
+
+.btn-love{
+  margin-top:26px;
+  padding:12px 28px;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(135deg,#ff4d6d,#ff85a1);
+  color:#fff;
+  font-size:1rem;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(255,77,109,.5);
 }
 
-.btn-love {
-  margin-top: 30px;
-  padding: 12px 28px;
-  border: none;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #ff4d6d, #ff85a1);
-  color: #fff;
-  font-size: 1rem;
-  cursor: pointer;
-  box-shadow: 0 10px 25px rgba(255,77,109,0.5);
+.music-btn{
+  margin-top:14px;
+  font-size:.95rem;
+  cursor:pointer;
+  color:#ffd1dc;
 }
 
-.music-btn {
-  margin-top: 14px;
-  font-size: 0.95rem;
-  cursor: pointer;
-  color: #ffd1dc;
+.romantic-text{
+  margin-top:24px;
+  max-width:520px;
+  background:rgba(255,255,255,.08);
+  padding:16px;
+  border-radius:14px;
+  line-height:1.7;
+  min-height:120px;
 }
 
-.romantic-text {
-  margin-top: 24px;
-  font-size: 1rem;
-  max-width: 520px;
-  line-height: 1.7;
-  padding: 14px 16px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 14px;
-  backdrop-filter: blur(6px);
-  min-height: 120px;
+.hearts{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
 }
 
-.hearts {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
+.heart{
+  position:absolute;
+  bottom:-40px;
+  animation:floatUp linear infinite;
 }
 
-.heart {
-  position: absolute;
-  bottom: -50px;
-  animation: floatUp linear infinite;
-}
-
-@keyframes floatUp {
-  from { transform: translateY(0); opacity:1 }
-  to { transform: translateY(-110vh); opacity:0 }
+@keyframes floatUp{
+  to{transform:translateY(-110vh);opacity:0}
 }
 
 @media(max-width:480px){
-  h1{font-size:1.7rem}
+  h1{font-size:1.6rem}
   .btn-love{width:100%;max-width:280px}
 }
-
-  </style>
+</style>
 </head>
-<body><div class="hearts" id="hearts"></div><div class="container">
+
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="container">
   <h1>Hari yang Mengawali Segalanya</h1>
   <div class="subtitle">18 Januari 2026</div>
-  <div id="counter"></div>  <div class="calendar">
+  <div id="counter"></div>
+
+  <div class="calendar">
     <div class="calendar-header">Januari 2026</div>
     <div class="days">
-      <div class="day-name">Min</div><div class="day-name">Sen</div><div class="day-name">Sel</div><div class="day-name">Rab</div><div class="day-name">Kam</div><div class="day-name">Jum</div><div class="day-name">Sab</div>
+      <div class="day-name">Min</div><div class="day-name">Sen</div><div class="day-name">Sel</div>
+      <div class="day-name">Rab</div><div class="day-name">Kam</div><div class="day-name">Jum</div><div class="day-name">Sab</div>
       <div></div><div></div><div></div><div></div>
       <div class="day">1</div><div class="day">2</div><div class="day">3</div>
-      <div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div>
-      <div class="day">11</div><div class="day">12</div><div class="day">13</div><div class="day">14</div><div class="day">15</div><div class="day">16</div><div class="day">17</div>
-      <div class="day special">18</div><div class="day">19</div><div class="day">20</div><div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div>
-      <div class="day">25</div><div class="day">26</div><div class="day">27</div><div class="day">28</div><div class="day">29</div><div class="day">30</div><div class="day">31</div>
+      <div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div>
+      <div class="day">8</div><div class="day">9</div><div class="day">10</div>
+      <div class="day">11</div><div class="day">12</div><div class="day">13</div><div class="day">14</div>
+      <div class="day">15</div><div class="day">16</div><div class="day">17</div>
+      <div class="day special">18</div>
+      <div class="day">19</div><div class="day">20</div><div class="day">21</div>
+      <div class="day">22</div><div class="day">23</div><div class="day">24</div>
+      <div class="day">25</div><div class="day">26</div><div class="day">27</div>
+      <div class="day">28</div><div class="day">29</div><div class="day">30</div><div class="day">31</div>
     </div>
     <div class="caption">❤️ Hari jadian kita</div>
-  </div><button class="btn-love" onclick="startLove()">Klik Aku ❤️</button>
+  </div>
 
-  <div class="music-btn" onclick="openMusic()">▶ Putar lagu Perfect – Ed Sheeran</div>  <div class="romantic-text" id="romanticText"></div>
-</div><script>
-  // counter hari
-  const start = new Date('2026-01-18');
-  const today = new Date();
-  const diff = Math.floor((today-start)/(1000*60*60*24));
-  document.getElementById('counter').innerHTML = diff >= 0
-    ? `Sudah <b>${diff}</b> hari kita berjalan bersama`
-    : `Menuju hari itu dalam <b>${Math.abs(diff)}</b> hari`;
+  <button class="btn-love" onclick="startLove()">Klik Aku ❤️</button>
+  <div class="music-btn" onclick="toggleMusic()">🎵 Putar / Pause Lagu</div>
 
-  // typing effect
-  const message = "18 Januari 2026 bukan sekadar tanggal. Ia adalah awal dari cerita yang kita pilih untuk dijalani dengan tenang, saling percaya, dan tumbuh bersama. Semoga langkah ini selalu membawa kita pulang satu sama lain.";
-  let i = 0;
+  <div class="romantic-text" id="romanticText"></div>
+</div>
 
-  function startLove(){
-    const box = document.getElementById('romanticText');
-    box.innerHTML = '';
-    i = 0;
-    const typing = setInterval(()=>{
-      box.innerHTML += message.charAt(i);
-      i++;
-      if(i >= message.length) clearInterval(typing);
-    },40);
-    box.scrollIntoView({behavior:'smooth',block:'center'});
-  }
+<!-- AUDIO -->
+<audio id="bgMusic" preload="auto">
+  <source src="perfect.mp3" type="audio/mpeg">
+</audio>
 
-  // buka musik (YouTube tidak bisa autoplay di HTML biasa)
-  function openMusic(){
-    window.open('https://youtu.be/2Vv-BfVoq4g?si=Eco0WXvMs1gCF7ps','_blank');
-  }
+<script>
+// counter
+const start = new Date('2026-01-18');
+const today = new Date();
+const diff = Math.floor((today-start)/(1000*60*60*24));
+document.getElementById('counter').innerHTML =
+diff>=0 ? `Sudah <b>${diff}</b> hari kita bersama`
+        : `Menuju hari itu dalam <b>${Math.abs(diff)}</b> hari`;
 
-  // hearts
-  const hearts = document.getElementById('hearts');
-  setInterval(()=>{
-    const h = document.createElement('div');
-    h.className = 'heart';
-    h.innerHTML = '❤️';
-    h.style.left = Math.random()*100+'vw';
-    h.style.fontSize = 12+Math.random()*20+'px';
-    h.style.animationDuration = 5+Math.random()*5+'s';
-    hearts.appendChild(h);
-    setTimeout(()=>h.remove(),8000);
-  },400);
-</script></body>
+// typing effect
+const text = "18 Januari 2026 bukan sekadar tanggal. Ia adalah awal dari cerita yang kita pilih untuk dijalani perlahan, saling percaya, dan tumbuh bersama.";
+let i=0;
+
+function startLove(){
+  const box=document.getElementById('romanticText');
+  box.innerHTML='';
+  i=0;
+  const t=setInterval(()=>{
+    box.innerHTML+=text.charAt(i);
+    i++;
+    if(i>=text.length)clearInterval(t);
+  },40);
+  box.scrollIntoView({behavior:'smooth',block:'center'});
+  toggleMusic();
+}
+
+// music
+function toggleMusic(){
+  const m=document.getElementById('bgMusic');
+  m.volume=0.5;
+  m.paused?m.play():m.pause();
+}
+
+// hearts
+const hearts=document.getElementById('hearts');
+setInterval(()=>{
+  const h=document.createElement('div');
+  h.className='heart';
+  h.innerHTML='❤️';
+  h.style.left=Math.random()*100+'vw';
+  h.style.fontSize=12+Math.random()*20+'px';
+  h.style.animationDuration=5+Math.random()*5+'s';
+  hearts.appendChild(h);
+  setTimeout(()=>h.remove(),8000);
+},400);
+</script>
+
+</body>
 </html>
