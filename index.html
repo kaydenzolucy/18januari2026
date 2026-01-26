@@ -11,20 +11,46 @@
       color: #fff;
       overflow-x: hidden;
       overflow-y: auto;
-    }.container {
+    }body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at bottom, rgba(255,182,193,0.12), transparent 60%);
+  pointer-events:none;
+}
 
-position: relative; z-index: 2; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
+.container {
+  position: relative;
+  z-index: 2;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
 
 h1 {
-
-font-size: 2.1rem; margin-bottom: 8px; color: #ffccd5; font-weight: 600; letter-spacing: 0.5px; text-shadow: 0 0 12px rgba(255,204,213,0.6); }
+  font-size: 2.1rem;
+  margin-bottom: 8px;
+  color: #ffccd5;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 12px rgba(255,204,213,0.6);
+}
 
 .subtitle {
   opacity: 0.9;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
-/* Kalender */
+#counter {
+  margin-bottom: 18px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
 .calendar {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -47,10 +73,7 @@ font-size: 2.1rem; margin-bottom: 8px; color: #ffccd5; font-weight: 600; letter-
   gap: 8px;
 }
 
-.day-name {
-  font-size: 0.75rem;
-  opacity: 0.7;
-}
+.day-name { font-size: 0.75rem; opacity: 0.7; }
 
 .day {
   padding: 10px 0;
@@ -76,8 +99,8 @@ font-size: 2.1rem; margin-bottom: 8px; color: #ffccd5; font-weight: 600; letter-
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.3); }
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.3)}
 }
 
 .caption {
@@ -86,7 +109,6 @@ font-size: 2.1rem; margin-bottom: 8px; color: #ffccd5; font-weight: 600; letter-
   color: #ffd1dc;
 }
 
-/* Tombol */
 .btn-love {
   margin-top: 30px;
   padding: 12px 28px;
@@ -97,30 +119,30 @@ font-size: 2.1rem; margin-bottom: 8px; color: #ffccd5; font-weight: 600; letter-
   font-size: 1rem;
   cursor: pointer;
   box-shadow: 0 10px 25px rgba(255,77,109,0.5);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.btn-love:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 15px 30px rgba(255,77,109,0.7);
+.music-btn {
+  margin-top: 14px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: #ffd1dc;
 }
 
 .romantic-text {
+  margin-top: 24px;
+  font-size: 1rem;
+  max-width: 520px;
+  line-height: 1.7;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 14px;
+  backdrop-filter: blur(6px);
+  min-height: 120px;
+}
 
-margin-top: 20px; font-size: 1rem; max-width: 520px; line-height: 1.7; padding: 14px 16px; background: rgba(255,255,255,0.08); border-radius: 14px; backdrop-filter: blur(6px); opacity: 0; transform: translateY(10px); transition: opacity 0.6s ease, transform 0.6s ease; }
-
-.romantic-text.show {
-
-opacity: 1; transform: translateY(0); }
-
-/* Love mengambang */
 .hearts {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  inset: 0;
   z-index: 1;
   pointer-events: none;
 }
@@ -128,148 +150,80 @@ opacity: 1; transform: translateY(0); }
 .heart {
   position: absolute;
   bottom: -50px;
-  color: rgba(255, 105, 180, 0.8);
   animation: floatUp linear infinite;
 }
 
 @keyframes floatUp {
-  from {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-110vh) scale(1.5);
-    opacity: 0;
-  }
+  from { transform: translateY(0); opacity:1 }
+  to { transform: translateY(-110vh); opacity:0 }
 }
 
-@media (max-width: 480px) { h1 { font-size: 1.7rem; }
+@media(max-width:480px){
+  h1{font-size:1.7rem}
+  .btn-love{width:100%;max-width:280px}
+}
 
-.calendar { padding: 16px; }
-
-.day { padding: 8px 0; font-size: 0.8rem; }
-
-.btn-love { width: 100%; max-width: 280px; font-size: 0.95rem; }
-
-.romantic-text { font-size: 0.95rem; } }
-
-/* Glow malam */ body::after{ content:''; position:fixed; inset:0; background:radial-gradient(circle at bottom, rgba(255,182,193,0.12), transparent 60%); pointer-events:none; }
-
-</style>
+  </style>
 </head>
-<body>
-  <div class="hearts" id="hearts"></div>  <div class="container">
-    <h1>Hari yang Mengawali Segalanya</h1>
-    <div class="subtitle">18 Januari 2026</div>
-<div id="counter" style="margin-bottom:18px;font-size:0.95rem;opacity:0.85;"></div><div class="calendar">
-  <div class="calendar-header">Januari 2026</div>
-  <div class="days">
-    <div class="day-name">Min</div>
-    <div class="day-name">Sen</div>
-    <div class="day-name">Sel</div>
-    <div class="day-name">Rab</div>
-    <div class="day-name">Kam</div>
-    <div class="day-name">Jum</div>
-    <div class="day-name">Sab</div>
+<body><div class="hearts" id="hearts"></div><div class="container">
+  <h1>Hari yang Mengawali Segalanya</h1>
+  <div class="subtitle">18 Januari 2026</div>
+  <div id="counter"></div>  <div class="calendar">
+    <div class="calendar-header">Januari 2026</div>
+    <div class="days">
+      <div class="day-name">Min</div><div class="day-name">Sen</div><div class="day-name">Sel</div><div class="day-name">Rab</div><div class="day-name">Kam</div><div class="day-name">Jum</div><div class="day-name">Sab</div>
+      <div></div><div></div><div></div><div></div>
+      <div class="day">1</div><div class="day">2</div><div class="day">3</div>
+      <div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div>
+      <div class="day">11</div><div class="day">12</div><div class="day">13</div><div class="day">14</div><div class="day">15</div><div class="day">16</div><div class="day">17</div>
+      <div class="day special">18</div><div class="day">19</div><div class="day">20</div><div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div>
+      <div class="day">25</div><div class="day">26</div><div class="day">27</div><div class="day">28</div><div class="day">29</div><div class="day">30</div><div class="day">31</div>
+    </div>
+    <div class="caption">❤️ Hari jadian kita</div>
+  </div><button class="btn-love" onclick="startLove()">Klik Aku ❤️</button>
 
-    <!-- Januari 2026 dimulai hari Kamis -->
-    <div></div><div></div><div></div><div></div>
-    <div class="day">1</div>
-    <div class="day">2</div>
-    <div class="day">3</div>
+  <div class="music-btn" onclick="openMusic()">▶ Putar lagu Perfect – Ed Sheeran</div>  <div class="romantic-text" id="romanticText"></div>
+</div><script>
+  // counter hari
+  const start = new Date('2026-01-18');
+  const today = new Date();
+  const diff = Math.floor((today-start)/(1000*60*60*24));
+  document.getElementById('counter').innerHTML = diff >= 0
+    ? `Sudah <b>${diff}</b> hari kita berjalan bersama`
+    : `Menuju hari itu dalam <b>${Math.abs(diff)}</b> hari`;
 
-    <div class="day">4</div>
-    <div class="day">5</div>
-    <div class="day">6</div>
-    <div class="day">7</div>
-    <div class="day">8</div>
-    <div class="day">9</div>
-    <div class="day">10</div>
+  // typing effect
+  const message = "18 Januari 2026 bukan sekadar tanggal. Ia adalah awal dari cerita yang kita pilih untuk dijalani dengan tenang, saling percaya, dan tumbuh bersama. Semoga langkah ini selalu membawa kita pulang satu sama lain.";
+  let i = 0;
 
-    <div class="day">11</div>
-    <div class="day">12</div>
-    <div class="day">13</div>
-    <div class="day">14</div>
-    <div class="day">15</div>
-    <div class="day">16</div>
-    <div class="day">17</div>
-
-    <div class="day special">18</div>
-    <div class="day">19</div>
-    <div class="day">20</div>
-    <div class="day">21</div>
-    <div class="day">22</div>
-    <div class="day">23</div>
-    <div class="day">24</div>
-
-    <div class="day">25</div>
-    <div class="day">26</div>
-    <div class="day">27</div>
-    <div class="day">28</div>
-    <div class="day">29</div>
-    <div class="day">30</div>
-    <div class="day">31</div>
-  </div>
-  <div class="caption">❤️ 18 Januari 2026 adalah hari jadian kita</div>
-</div>
-
-<button class="btn-love" onclick="showLove()">Klik Aku ❤️</button>
-
-<div class="romantic-text" id="romanticText">
-
-18 Januari 2026 bukan sekadar tanggal. Ia adalah awal dari cerita yang kita pilih untuk jalani dengan tenang, saling percaya, dan tumbuh bersama. Semoga langkah ini selalu membawa kita pulang satu sama lain. 🤍
-
-</div>
-  </div>  <audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_8b5c4c7a89.mp3" type="audio/mpeg">
-</audio><script>
-    function showLove() {
-  const text = document.getElementById('romanticText');
-  text.classList.add('show');
-  text.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-  const music = document.getElementById('bgMusic');
-  if (music) {
-    music.volume = 0.4;
-    music.play().catch(err => {
-      console.log('Autoplay dicegah, tap ulang tombol untuk musik');
-    });
+  function startLove(){
+    const box = document.getElementById('romanticText');
+    box.innerHTML = '';
+    i = 0;
+    const typing = setInterval(()=>{
+      box.innerHTML += message.charAt(i);
+      i++;
+      if(i >= message.length) clearInterval(typing);
+    },40);
+    box.scrollIntoView({behavior:'smooth',block:'center'});
   }
-});
-}
 
-    const heartsContainer = document.getElementById('hearts');
+  // buka musik (YouTube tidak bisa autoplay di HTML biasa)
+  function openMusic(){
+    window.open('https://youtu.be/2Vv-BfVoq4g?si=Eco0WXvMs1gCF7ps','_blank');
+  }
 
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.innerHTML = '❤️';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.fontSize = 12 + Math.random() * 20 + 'px';
-      const duration = 5 + Math.random() * 5;
-      heart.style.animationDuration = duration + 's';
-
-      heartsContainer.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, duration * 1000);
-    }
-
-    setInterval(createHeart, 400);
-
-// Counter hari jadian
-const startDate = new Date('2026-01-18');
-const today = new Date();
-const diffTime = today - startDate;
-const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-const counter = document.getElementById('counter');
-if(diffDays >= 0){
-  counter.innerHTML = `Sudah <b>${diffDays}</b> hari kita berjalan bersama`;
-}else{
-  counter.innerHTML = `Menuju hari itu dalam <b>${Math.abs(diffDays)}</b> hari`;
-}
-
-  </script></body>
+  // hearts
+  const hearts = document.getElementById('hearts');
+  setInterval(()=>{
+    const h = document.createElement('div');
+    h.className = 'heart';
+    h.innerHTML = '❤️';
+    h.style.left = Math.random()*100+'vw';
+    h.style.fontSize = 12+Math.random()*20+'px';
+    h.style.animationDuration = 5+Math.random()*5+'s';
+    hearts.appendChild(h);
+    setTimeout(()=>h.remove(),8000);
+  },400);
+</script></body>
 </html>
