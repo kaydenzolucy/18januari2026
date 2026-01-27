@@ -8,20 +8,36 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --pink:#ff9a9e;
+  --rose:#f8cdda;
+  --plum:#2b0a3d;
+  --gold:rgba(255,215,160,.7);
+}
+
+*{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:'Quicksand',sans-serif;
-  background:radial-gradient(circle at top,#2b1055,#000);
   color:#fff;
+  background:
+    radial-gradient(circle at top,var(--rose),transparent 40%),
+    linear-gradient(180deg,var(--plum),#000);
   overflow-x:hidden;
 }
+
+/* soft glow layer */
 body::after{
   content:'';
   position:fixed;
   inset:0;
-  background:radial-gradient(circle at bottom,rgba(255,182,193,.15),transparent 60%);
+  background:
+    radial-gradient(circle at bottom,rgba(255,182,193,.2),transparent 60%);
   pointer-events:none;
 }
+
+/* container */
 .container{
   min-height:100svh;
   display:flex;
@@ -29,91 +45,135 @@ body::after{
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:20px;
-  z-index:2;
+  padding:22px;
   position:relative;
+  z-index:2;
 }
+
+/* title */
 h1{
   font-family:'Playfair Display',serif;
-  font-size:2.2rem;
-  color:#ffccd5;
-  text-shadow:0 0 18px rgba(255,204,213,.7);
+  font-size:2.4rem;
+  color:var(--rose);
+  text-shadow:
+    0 0 18px rgba(255,200,220,.8),
+    0 0 40px rgba(255,150,180,.4);
+  margin-bottom:6px;
 }
-.subtitle{opacity:.9}
-#counter{
-  margin:14px 0 20px;
-  font-size:.95rem;
-  line-height:1.6;
+
+.subtitle{
   opacity:.9;
+  letter-spacing:.04em;
 }
+
+/* counter */
+#counter{
+  margin:18px 0 24px;
+  font-size:1rem;
+  line-height:1.8;
+  color:#ffe6ee;
+}
+
+/* calendar */
 .calendar{
-  background:rgba(255,255,255,.1);
-  backdrop-filter:blur(12px);
-  border-radius:22px;
-  padding:20px;
-  max-width:360px;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(16px);
+  border-radius:26px;
+  padding:22px;
+  max-width:380px;
   width:100%;
-  box-shadow:0 20px 40px rgba(0,0,0,.4);
+  box-shadow:0 30px 60px rgba(0,0,0,.5);
 }
+
 .calendar-header{
-  font-size:1.3rem;
-  margin-bottom:14px;
+  font-size:1.35rem;
   font-weight:600;
+  margin-bottom:14px;
+  color:#ffd6e0;
 }
+
 .days{
   display:grid;
   grid-template-columns:repeat(7,1fr);
   gap:8px;
 }
-.day-name{font-size:.75rem;opacity:.7}
+
+.day-name{
+  font-size:.75rem;
+  opacity:.7;
+}
+
 .day{
   padding:10px 0;
-  border-radius:10px;
+  border-radius:12px;
   background:rgba(255,255,255,.08);
 }
+
+/* SPECIAL DAY */
 .special{
-  background:linear-gradient(135deg,#ff4d6d,#ff85a1);
-  box-shadow:0 0 18px rgba(255,77,109,.9);
+  background:linear-gradient(135deg,var(--pink),var(--rose));
+  box-shadow:
+    0 0 18px rgba(255,150,180,.9),
+    0 0 35px rgba(255,200,220,.6);
   font-weight:bold;
   cursor:pointer;
+  animation:heartbeat 1.6s infinite;
 }
-.caption{margin-top:14px;color:#ffd1dc}
+
+@keyframes heartbeat{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.12)}
+}
+
+.caption{
+  margin-top:14px;
+  color:#ffd1dc;
+  font-style:italic;
+}
+
+/* buttons */
 .btn-love{
-  margin-top:22px;
-  padding:12px 32px;
+  margin-top:26px;
+  padding:14px 36px;
   border:none;
   border-radius:999px;
-  background:linear-gradient(135deg,#ff4d6d,#ff85a1);
+  background:linear-gradient(135deg,var(--pink),var(--rose));
   color:#fff;
-  font-size:1rem;
+  font-size:1.05rem;
   cursor:pointer;
-  box-shadow:0 12px 28px rgba(255,77,109,.5);
+  box-shadow:0 14px 30px rgba(255,150,180,.6);
 }
+
 .music-btn,.question-btn{
-  margin-top:12px;
+  margin-top:14px;
   cursor:pointer;
-  color:#ffd1dc;
+  color:#ffd6e0;
 }
+
+/* romantic text */
 .romantic-text{
-  margin-top:22px;
-  max-width:540px;
-  background:rgba(255,255,255,.08);
-  padding:16px;
-  border-radius:16px;
-  line-height:1.8;
+  margin-top:26px;
+  max-width:560px;
+  background:rgba(255,255,255,.1);
+  padding:18px;
+  border-radius:18px;
+  line-height:1.9;
+  font-size:.95rem;
   min-height:120px;
 }
+
+/* answer */
 .answer{
-  margin-top:18px;
+  margin-top:22px;
   font-family:'Playfair Display',serif;
-  font-size:1.3rem;
+  font-size:1.4rem;
   color:#ffb6c1;
   opacity:0;
-  transition:opacity 1s ease;
+  transition:opacity 1.2s ease;
 }
 .answer.show{opacity:1}
 
-/* MODAL LOVE LETTER */
+/* modal letter */
 .modal{
   position:fixed;
   inset:0;
@@ -121,30 +181,54 @@ h1{
   display:none;
   align-items:center;
   justify-content:center;
-  z-index:5;
+  z-index:6;
 }
 .modal.show{display:flex}
-.modal-box{
-  background:rgba(255,255,255,.12);
-  backdrop-filter:blur(14px);
-  border-radius:22px;
-  padding:26px;
-  max-width:420px;
-  text-align:center;
-  animation:pop .4s ease;
-}
-@keyframes pop{from{transform:scale(.8);opacity:0}}
-.close{margin-top:18px;cursor:pointer;color:#ffd1dc}
 
-/* HEARTS */
-.hearts{position:fixed;inset:0;pointer-events:none;z-index:1}
+.modal-box{
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(18px);
+  border-radius:28px;
+  padding:30px;
+  max-width:440px;
+  text-align:center;
+  animation:fadePop .5s ease;
+}
+
+@keyframes fadePop{
+  from{opacity:0;transform:scale(.85)}
+}
+
+.modal-box p{
+  line-height:1.9;
+  font-size:1rem;
+}
+
+.close{
+  margin-top:20px;
+  cursor:pointer;
+  color:#ffd1dc;
+}
+
+/* hearts & sparkles */
+.hearts{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+
 .heart{
   position:absolute;
   bottom:-40px;
   animation:floatUp linear infinite;
 }
+
 @keyframes floatUp{
-  to{transform:translateY(-120vh) translateX(40px);opacity:0}
+  to{
+    transform:translateY(-120vh) translateX(60px);
+    opacity:0;
+  }
 }
 </style>
 </head>
@@ -161,23 +245,23 @@ h1{
   <div class="calendar">
     <div class="calendar-header">January 2026</div>
     <div class="days" id="calendar"></div>
-    <div class="caption">❤️ Our anniversary</div>
+    <div class="caption">— our hearts chose each other —</div>
   </div>
 
-  <button class="btn-love" onclick="startLove()">Click Me ❤️</button>
-  <div class="music-btn" onclick="toggleMusic()">🎵 Play / Pause Music</div>
+  <button class="btn-love" onclick="startLove()">Read Our Story ❤️</button>
+  <div class="music-btn" onclick="toggleMusic()">🎶 Play / Pause Music</div>
   <div class="question-btn" onclick="openLetter()">💌 Open Love Letter</div>
 
   <div class="romantic-text" id="romanticText"></div>
-  <div class="answer" id="answerText">I love you in every universe ✨</div>
+  <div class="answer" id="answerText">I choose you — again and again ✨</div>
 </div>
 
 <div class="modal" id="modal">
   <div class="modal-box">
     <p>
-      Loving you is my favorite choice.<br>
-      No matter how time changes,<br>
-      my heart always finds you.
+      Loving you is not something I do once.<br>
+      It is something I choose every day,<br>
+      in every lifetime, in every universe.
     </p>
     <div class="close" onclick="closeLetter()">Close ❤️</div>
   </div>
@@ -188,7 +272,7 @@ h1{
 </audio>
 
 <script>
-/* COUNTER REALTIME */
+/* COUNTER */
 const start=new Date("2026-01-18T00:00:00");
 setInterval(()=>{
   const now=new Date();
@@ -201,11 +285,11 @@ setInterval(()=>{
   const s=Math.floor(diff/1000)%60;
   document.getElementById("counter").innerHTML=
     sign
-    ? `Together for <b>${d}</b> days ${h}h ${m}m ${s}s`
-    : `Counting down <b>${d}</b> days`;
+    ? `We have loved each other for<br><b>${d}</b> days ${h} hours ${m} minutes ${s} seconds`
+    : `Counting down <b>${d}</b> days to our beginning`;
 },1000);
 
-/* CALENDAR AUTO */
+/* CALENDAR */
 const cal=document.getElementById("calendar");
 ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(d=>{
   cal.innerHTML+=`<div class="day-name">${d}</div>`;
@@ -215,8 +299,8 @@ for(let d=1;d<=31;d++){
   cal.innerHTML+=`<div class="day ${d===18?"special":""}" onclick="${d===18?"showAnswer()":""}">${d}</div>`;
 }
 
-/* TYPING */
-const msg="January 18, 2026 is not just a date. It is the beginning of a story we chose to live gently, with trust, love, and growth.";
+/* STORY */
+const msg="January 18, 2026 was not just a date. It was the moment two hearts decided to walk together — gently, honestly, and endlessly.";
 function startLove(){
   const box=document.getElementById("romanticText");
   box.innerHTML="";
@@ -224,20 +308,20 @@ function startLove(){
   const t=setInterval(()=>{
     box.innerHTML+=msg[i++];
     if(i>=msg.length)clearInterval(t);
-  },40);
+  },45);
 }
 
-/* MUSIC FADE */
+/* MUSIC */
 const music=document.getElementById("bgMusic");
 let playing=false;
 function toggleMusic(){
   if(!playing){
     music.volume=0; music.play();
-    let v=0; const f=setInterval(()=>{v+=.05;music.volume=v;if(v>=.5)clearInterval(f)},100);
+    let v=0; const f=setInterval(()=>{v+=.04;music.volume=v;if(v>=.5)clearInterval(f)},120);
     playing=true;
   }else{
     let v=music.volume;
-    const f=setInterval(()=>{v-=.05;music.volume=v;if(v<=0){music.pause();clearInterval(f)}},100);
+    const f=setInterval(()=>{v-=.04;music.volume=v;if(v<=0){music.pause();clearInterval(f)}},120);
     playing=false;
   }
 }
@@ -251,27 +335,27 @@ const hearts=document.getElementById("hearts");
 setInterval(()=>{
   const h=document.createElement("div");
   h.className="heart";
-  h.innerHTML="❤️";
+  h.innerHTML=Math.random()>.7?"✨":"❤️";
   h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=14+Math.random()*24+"px";
+  h.style.fontSize=14+Math.random()*26+"px";
   h.style.opacity=Math.random();
   h.style.animationDuration=6+Math.random()*6+"s";
   hearts.appendChild(h);
-  setTimeout(()=>h.remove(),9000);
-},450);
+  setTimeout(()=>h.remove(),10000);
+},380);
 
 /* EXPLOSION */
 function showAnswer(){
   document.getElementById("answerText").classList.add("show");
-  for(let i=0;i<70;i++){
+  for(let i=0;i<80;i++){
     const h=document.createElement("div");
     h.className="heart";
     h.innerHTML="❤️";
     h.style.left=Math.random()*100+"vw";
-    h.style.fontSize=20+Math.random()*30+"px";
+    h.style.fontSize=20+Math.random()*34+"px";
     h.style.animationDuration=2+Math.random()*3+"s";
     hearts.appendChild(h);
-    setTimeout(()=>h.remove(),5000);
+    setTimeout(()=>h.remove(),6000);
   }
 }
 </script>
