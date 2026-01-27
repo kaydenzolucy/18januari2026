@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Our Special Day ❤️</title>
 
-<!-- Sweet Font -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,500&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -16,15 +15,13 @@ body{
   color:#fff;
   overflow-x:hidden;
 }
-
 body::after{
   content:'';
   position:fixed;
   inset:0;
-  background:radial-gradient(circle at bottom,rgba(255,182,193,.12),transparent 60%);
+  background:radial-gradient(circle at bottom,rgba(255,182,193,.15),transparent 60%);
   pointer-events:none;
 }
-
 .container{
   min-height:100svh;
   display:flex;
@@ -33,100 +30,79 @@ body::after{
   justify-content:center;
   text-align:center;
   padding:20px;
-  position:relative;
   z-index:2;
+  position:relative;
 }
-
 h1{
   font-family:'Playfair Display',serif;
-  font-size:2.1rem;
+  font-size:2.2rem;
   color:#ffccd5;
-  text-shadow:0 0 14px rgba(255,204,213,.7);
+  text-shadow:0 0 18px rgba(255,204,213,.7);
 }
-
-.subtitle{opacity:.9;margin-bottom:8px}
-#counter{font-size:.95rem;opacity:.85;margin-bottom:18px}
-
+.subtitle{opacity:.9}
+#counter{
+  margin:14px 0 20px;
+  font-size:.95rem;
+  line-height:1.6;
+  opacity:.9;
+}
 .calendar{
   background:rgba(255,255,255,.1);
-  backdrop-filter:blur(10px);
-  border-radius:20px;
+  backdrop-filter:blur(12px);
+  border-radius:22px;
   padding:20px;
   max-width:360px;
   width:100%;
   box-shadow:0 20px 40px rgba(0,0,0,.4);
 }
-
 .calendar-header{
   font-size:1.3rem;
-  margin-bottom:15px;
+  margin-bottom:14px;
   font-weight:600;
 }
-
 .days{
   display:grid;
   grid-template-columns:repeat(7,1fr);
   gap:8px;
 }
-
 .day-name{font-size:.75rem;opacity:.7}
-
 .day{
   padding:10px 0;
   border-radius:10px;
   background:rgba(255,255,255,.08);
 }
-
 .special{
   background:linear-gradient(135deg,#ff4d6d,#ff85a1);
-  box-shadow:0 0 15px rgba(255,77,109,.8);
+  box-shadow:0 0 18px rgba(255,77,109,.9);
   font-weight:bold;
-  position:relative;
+  cursor:pointer;
 }
-
-.special::after{
-  content:'❤️';
-  position:absolute;
-  top:-10px;
-  right:-6px;
-  animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-  50%{transform:scale(1.3)}
-}
-
-.caption{margin-top:15px;color:#ffd1dc}
-
+.caption{margin-top:14px;color:#ffd1dc}
 .btn-love{
   margin-top:22px;
-  padding:12px 30px;
+  padding:12px 32px;
   border:none;
   border-radius:999px;
   background:linear-gradient(135deg,#ff4d6d,#ff85a1);
   color:#fff;
   font-size:1rem;
   cursor:pointer;
-  box-shadow:0 10px 25px rgba(255,77,109,.5);
+  box-shadow:0 12px 28px rgba(255,77,109,.5);
 }
-
 .music-btn,.question-btn{
-  margin-top:14px;
-  font-size:.95rem;
+  margin-top:12px;
   cursor:pointer;
   color:#ffd1dc;
 }
-
 .romantic-text{
-  margin-top:24px;
+  margin-top:22px;
   max-width:540px;
   background:rgba(255,255,255,.08);
   padding:16px;
-  border-radius:14px;
+  border-radius:16px;
   line-height:1.8;
   min-height:120px;
 }
-
 .answer{
   margin-top:18px;
   font-family:'Playfair Display',serif;
@@ -135,29 +111,40 @@ h1{
   opacity:0;
   transition:opacity 1s ease;
 }
-
 .answer.show{opacity:1}
 
-.hearts{
+/* MODAL LOVE LETTER */
+.modal{
   position:fixed;
   inset:0;
-  pointer-events:none;
-  z-index:1;
+  background:rgba(0,0,0,.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:5;
 }
+.modal.show{display:flex}
+.modal-box{
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(14px);
+  border-radius:22px;
+  padding:26px;
+  max-width:420px;
+  text-align:center;
+  animation:pop .4s ease;
+}
+@keyframes pop{from{transform:scale(.8);opacity:0}}
+.close{margin-top:18px;cursor:pointer;color:#ffd1dc}
 
+/* HEARTS */
+.hearts{position:fixed;inset:0;pointer-events:none;z-index:1}
 .heart{
   position:absolute;
   bottom:-40px;
   animation:floatUp linear infinite;
 }
-
 @keyframes floatUp{
-  to{transform:translateY(-120vh);opacity:0}
-}
-
-@media(max-width:480px){
-  h1{font-size:1.7rem}
-  .btn-love{width:100%;max-width:280px}
+  to{transform:translateY(-120vh) translateX(40px);opacity:0}
 }
 </style>
 </head>
@@ -173,30 +160,27 @@ h1{
 
   <div class="calendar">
     <div class="calendar-header">January 2026</div>
-    <div class="days">
-      <div class="day-name">Sun</div><div class="day-name">Mon</div><div class="day-name">Tue</div>
-      <div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div><div class="day-name">Sat</div>
-      <div></div><div></div><div></div><div></div>
-      <div class="day">1</div><div class="day">2</div><div class="day">3</div>
-      <div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div>
-      <div class="day">8</div><div class="day">9</div><div class="day">10</div>
-      <div class="day">11</div><div class="day">12</div><div class="day">13</div><div class="day">14</div>
-      <div class="day">15</div><div class="day">16</div><div class="day">17</div>
-      <div class="day special">18</div>
-      <div class="day">19</div><div class="day">20</div><div class="day">21</div>
-      <div class="day">22</div><div class="day">23</div><div class="day">24</div>
-      <div class="day">25</div><div class="day">26</div><div class="day">27</div>
-      <div class="day">28</div><div class="day">29</div><div class="day">30</div><div class="day">31</div>
-    </div>
+    <div class="days" id="calendar"></div>
     <div class="caption">❤️ Our anniversary</div>
   </div>
 
   <button class="btn-love" onclick="startLove()">Click Me ❤️</button>
   <div class="music-btn" onclick="toggleMusic()">🎵 Play / Pause Music</div>
-  <div class="question-btn" onclick="showAnswer()">💌 How much do I love you?</div>
+  <div class="question-btn" onclick="openLetter()">💌 Open Love Letter</div>
 
   <div class="romantic-text" id="romanticText"></div>
   <div class="answer" id="answerText">I love you in every universe ✨</div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <p>
+      Loving you is my favorite choice.<br>
+      No matter how time changes,<br>
+      my heart always finds you.
+    </p>
+    <div class="close" onclick="closeLetter()">Close ❤️</div>
+  </div>
 </div>
 
 <audio id="bgMusic" preload="auto">
@@ -204,75 +188,92 @@ h1{
 </audio>
 
 <script>
-/* COUNTER */
-const start = new Date('2026-01-18');
-const today = new Date();
-const diff = Math.floor((today-start)/(1000*60*60*24));
-document.getElementById('counter').innerHTML =
-  diff>=0 ? `We have been together for <b>${diff}</b> days`
-          : `Counting down <b>${Math.abs(diff)}</b> days to our beginning`;
+/* COUNTER REALTIME */
+const start=new Date("2026-01-18T00:00:00");
+setInterval(()=>{
+  const now=new Date();
+  let diff=now-start;
+  const sign=diff>=0;
+  diff=Math.abs(diff);
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor(diff/3600000)%24;
+  const m=Math.floor(diff/60000)%60;
+  const s=Math.floor(diff/1000)%60;
+  document.getElementById("counter").innerHTML=
+    sign
+    ? `Together for <b>${d}</b> days ${h}h ${m}m ${s}s`
+    : `Counting down <b>${d}</b> days`;
+},1000);
+
+/* CALENDAR AUTO */
+const cal=document.getElementById("calendar");
+["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(d=>{
+  cal.innerHTML+=`<div class="day-name">${d}</div>`;
+});
+for(let i=0;i<4;i++)cal.innerHTML+="<div></div>";
+for(let d=1;d<=31;d++){
+  cal.innerHTML+=`<div class="day ${d===18?"special":""}" onclick="${d===18?"showAnswer()":""}">${d}</div>`;
+}
 
 /* TYPING */
-const message =
-"January 18, 2026 is not just a date. It is the beginning of a story we chose to live gently, with trust, love, and growth. No matter where life takes us, may we always find our way back to each other.";
-
-let typingInterval=null;
+const msg="January 18, 2026 is not just a date. It is the beginning of a story we chose to live gently, with trust, love, and growth.";
 function startLove(){
   const box=document.getElementById("romanticText");
   box.innerHTML="";
-  if(typingInterval)clearInterval(typingInterval);
   let i=0;
-  typingInterval=setInterval(()=>{
-    box.innerHTML+=message.charAt(i);
-    i++;
-    if(i>=message.length)clearInterval(typingInterval);
+  const t=setInterval(()=>{
+    box.innerHTML+=msg[i++];
+    if(i>=msg.length)clearInterval(t);
   },40);
-  box.scrollIntoView({behavior:"smooth",block:"center"});
 }
 
-/* MUSIC */
+/* MUSIC FADE */
 const music=document.getElementById("bgMusic");
 let playing=false;
 function toggleMusic(){
-  music.volume=0.5;
   if(!playing){
-    music.play().then(()=>playing=true)
-    .catch(()=>alert("Tap again to play the music 🎵"));
+    music.volume=0; music.play();
+    let v=0; const f=setInterval(()=>{v+=.05;music.volume=v;if(v>=.5)clearInterval(f)},100);
+    playing=true;
   }else{
-    music.pause(); playing=false;
+    let v=music.volume;
+    const f=setInterval(()=>{v-=.05;music.volume=v;if(v<=0){music.pause();clearInterval(f)}},100);
+    playing=false;
   }
 }
 
-/* HEARTS FLOAT */
+/* LETTER */
+function openLetter(){document.getElementById("modal").classList.add("show")}
+function closeLetter(){document.getElementById("modal").classList.remove("show")}
+
+/* HEARTS */
 const hearts=document.getElementById("hearts");
 setInterval(()=>{
   const h=document.createElement("div");
   h.className="heart";
   h.innerHTML="❤️";
   h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=14+Math.random()*22+"px";
-  h.style.animationDuration=5+Math.random()*5+"s";
+  h.style.fontSize=14+Math.random()*24+"px";
+  h.style.opacity=Math.random();
+  h.style.animationDuration=6+Math.random()*6+"s";
   hearts.appendChild(h);
-  setTimeout(()=>h.remove(),8000);
-},400);
+  setTimeout(()=>h.remove(),9000);
+},450);
 
-/* LOVE EXPLOSION */
+/* EXPLOSION */
 function showAnswer(){
-  const ans=document.getElementById("answerText");
-  ans.classList.add("show");
-
-  for(let i=0;i<80;i++){
+  document.getElementById("answerText").classList.add("show");
+  for(let i=0;i<70;i++){
     const h=document.createElement("div");
     h.className="heart";
     h.innerHTML="❤️";
     h.style.left=Math.random()*100+"vw";
-    h.style.fontSize=18+Math.random()*30+"px";
+    h.style.fontSize=20+Math.random()*30+"px";
     h.style.animationDuration=2+Math.random()*3+"s";
     hearts.appendChild(h);
     setTimeout(()=>h.remove(),5000);
   }
 }
 </script>
-
 </body>
 </html>
