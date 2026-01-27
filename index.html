@@ -9,10 +9,11 @@
 
 <style>
 :root{
-  --pink:#ff9a9e;
-  --rose:#f8cdda;
+  --pink:#ffb6c1;
+  --rose:#ffd1dc;
+  --lav:#e0c3fc;
+  --blue:#b5d8ff;
   --plum:#2b0a3d;
-  --gold:rgba(255,215,160,.7);
 }
 
 *{box-sizing:border-box}
@@ -33,7 +34,7 @@ body::after{
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle at bottom,rgba(255,182,193,.2),transparent 60%);
+    radial-gradient(circle at bottom,rgba(255,182,193,.25),transparent 60%);
   pointer-events:none;
 }
 
@@ -50,39 +51,56 @@ body::after{
   z-index:2;
 }
 
-/* title */
+/* RGB ROMANTIC TITLE */
 h1{
   font-family:'Playfair Display',serif;
-  font-size:2.4rem;
-  color:var(--rose);
-  text-shadow:
-    0 0 18px rgba(255,200,220,.8),
-    0 0 40px rgba(255,150,180,.4);
+  font-size:2.6rem;
   margin-bottom:6px;
+
+  background:linear-gradient(
+    120deg,
+    var(--pink),
+    var(--rose),
+    var(--lav),
+    var(--blue),
+    var(--rose)
+  );
+  background-size:400% 400%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  animation:rgbRomantic 14s ease-in-out infinite;
+
+  text-shadow:
+    0 0 18px rgba(255,182,193,.45),
+    0 0 36px rgba(224,195,252,.25);
 }
 
+/* subtitle */
 .subtitle{
-  opacity:.9;
-  letter-spacing:.04em;
+  opacity:.95;
+  letter-spacing:.08em;
+  color:#ffe6ee;
+  text-shadow:0 0 12px rgba(255,182,193,.4);
 }
 
 /* counter */
 #counter{
   margin:18px 0 24px;
   font-size:1rem;
-  line-height:1.8;
+  line-height:1.9;
   color:#ffe6ee;
 }
 
 /* calendar */
 .calendar{
   background:rgba(255,255,255,.12);
-  backdrop-filter:blur(16px);
+  backdrop-filter:blur(18px);
   border-radius:26px;
   padding:22px;
   max-width:380px;
   width:100%;
-  box-shadow:0 30px 60px rgba(0,0,0,.5);
+  box-shadow:0 30px 60px rgba(0,0,0,.55);
 }
 
 .calendar-header{
@@ -111,13 +129,19 @@ h1{
 
 /* SPECIAL DAY */
 .special{
-  background:linear-gradient(135deg,var(--pink),var(--rose));
+  background:linear-gradient(
+    135deg,
+    var(--pink),
+    var(--rose),
+    var(--lav)
+  );
+  background-size:300% 300%;
   box-shadow:
-    0 0 18px rgba(255,150,180,.9),
-    0 0 35px rgba(255,200,220,.6);
+    0 0 20px rgba(255,150,180,.9),
+    0 0 40px rgba(255,200,220,.6);
   font-weight:bold;
   cursor:pointer;
-  animation:heartbeat 1.6s infinite;
+  animation:heartbeat 1.6s infinite, rgbRomantic 8s ease infinite;
 }
 
 @keyframes heartbeat{
@@ -173,7 +197,7 @@ h1{
 }
 .answer.show{opacity:1}
 
-/* modal letter */
+/* modal */
 .modal{
   position:fixed;
   inset:0;
@@ -210,7 +234,7 @@ h1{
   color:#ffd1dc;
 }
 
-/* hearts & sparkles */
+/* hearts */
 .hearts{
   position:fixed;
   inset:0;
@@ -229,6 +253,15 @@ h1{
     transform:translateY(-120vh) translateX(60px);
     opacity:0;
   }
+}
+
+/* RGB animation */
+@keyframes rgbRomantic{
+  0%{background-position:0% 50%}
+  25%{background-position:50% 50%}
+  50%{background-position:100% 50%}
+  75%{background-position:50% 50%}
+  100%{background-position:0% 50%}
 }
 </style>
 </head>
@@ -317,11 +350,18 @@ let playing=false;
 function toggleMusic(){
   if(!playing){
     music.volume=0; music.play();
-    let v=0; const f=setInterval(()=>{v+=.04;music.volume=v;if(v>=.5)clearInterval(f)},120);
+    let v=0;
+    const f=setInterval(()=>{
+      v+=.04; music.volume=v;
+      if(v>=.5)clearInterval(f);
+    },120);
     playing=true;
   }else{
     let v=music.volume;
-    const f=setInterval(()=>{v-=.04;music.volume=v;if(v<=0){music.pause();clearInterval(f)}},120);
+    const f=setInterval(()=>{
+      v-=.04; music.volume=v;
+      if(v<=0){music.pause();clearInterval(f)}
+    },120);
     playing=false;
   }
 }
@@ -359,5 +399,6 @@ function showAnswer(){
   }
 }
 </script>
+
 </body>
 </html>
