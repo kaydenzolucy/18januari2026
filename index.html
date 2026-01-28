@@ -13,23 +13,33 @@
   --rose:#ffd1dc;
   --lav:#e0c3fc;
   --blue:#b5d8ff;
+  --plum:#2b0a3d;
 }
 
-/* RESET */
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box}
 
-/* 🌌 GALAXY BACKGROUND */
 body{
+  margin:0;
   font-family:'Quicksand',sans-serif;
   color:#fff;
   overflow-x:hidden;
-  background:
-    radial-gradient(circle at 20% 30%,rgba(255,182,193,.35),transparent 40%),
-    radial-gradient(circle at 80% 70%,rgba(224,195,252,.35),transparent 45%),
-    radial-gradient(circle at 50% 50%,rgba(181,216,255,.25),transparent 50%),
-    linear-gradient(120deg,#12001a,#1b0030,#0a0018);
-  background-size:200% 200%;
+  background:linear-gradient(120deg,#1a062f,#2b0a3d,#1a062f);
+  background-size:400% 400%;
   animation:galaxyMove 60s ease infinite;
+}
+
+/* galaxy stars */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 30%,rgba(255,182,193,.25),transparent 35%),
+    radial-gradient(circle at 80% 70%,rgba(224,195,252,.25),transparent 40%),
+    radial-gradient(circle at 50% 50%,rgba(181,216,255,.2),transparent 45%);
+  animation:galaxyFloat 90s linear infinite;
+  pointer-events:none;
+  z-index:0;
 }
 
 @keyframes galaxyMove{
@@ -38,26 +48,12 @@ body{
   100%{background-position:0% 50%}
 }
 
-/* ✨ STARS */
-body::after{
-  content:'';
-  position:fixed;
-  inset:0;
-  background-image:
-    radial-gradient(1px 1px at 20% 30%,white,transparent),
-    radial-gradient(1px 1px at 70% 60%,white,transparent),
-    radial-gradient(1px 1px at 40% 80%,white,transparent);
-  opacity:.5;
-  animation:twinkle 6s infinite alternate;
-  pointer-events:none;
+@keyframes galaxyFloat{
+  from{transform:translateY(0)}
+  to{transform:translateY(-200px)}
 }
 
-@keyframes twinkle{
-  from{opacity:.3}
-  to{opacity:.6}
-}
-
-/* CONTAINER */
+/* container */
 .container{
   min-height:100svh;
   display:flex;
@@ -70,37 +66,33 @@ body::after{
   z-index:2;
 }
 
-/* TITLE */
+/* title RGB */
 h1{
   font-family:'Playfair Display',serif;
   font-size:2.6rem;
   margin-bottom:6px;
-  background:linear-gradient(120deg,var(--pink),var(--rose),var(--lav),var(--blue));
+  background:linear-gradient(120deg,var(--pink),var(--rose),var(--lav),var(--blue),var(--rose));
   background-size:400% 400%;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  animation:rgb 14s ease infinite;
-  text-shadow:0 0 25px rgba(255,182,193,.5);
-}
-
-@keyframes rgb{
-  0%{background-position:0%}
-  50%{background-position:100%}
-  100%{background-position:0%}
+  animation:rgbRomantic 14s ease infinite;
+  text-shadow:0 0 20px rgba(255,182,193,.4);
 }
 
 .subtitle{
+  opacity:.95;
   letter-spacing:.08em;
-  opacity:.9;
-  margin-bottom:10px;
+  color:#ffe6ee;
 }
 
 #counter{
-  margin:16px 0 24px;
-  line-height:1.8;
+  margin:18px 0 24px;
+  font-size:1rem;
+  line-height:1.9;
+  color:#ffe6ee;
 }
 
-/* CALENDAR */
+/* calendar */
 .calendar{
   background:rgba(255,255,255,.12);
   backdrop-filter:blur(18px);
@@ -108,11 +100,12 @@ h1{
   padding:22px;
   max-width:380px;
   width:100%;
-  box-shadow:0 30px 60px rgba(0,0,0,.6);
+  box-shadow:0 30px 60px rgba(0,0,0,.55);
 }
 
 .calendar-header{
-  font-size:1.3rem;
+  font-size:1.35rem;
+  font-weight:600;
   margin-bottom:14px;
   color:#ffd6e0;
 }
@@ -123,7 +116,11 @@ h1{
   gap:8px;
 }
 
-.day-name{font-size:.75rem;opacity:.7}
+.day-name{
+  font-size:.75rem;
+  opacity:.7;
+}
+
 .day{
   padding:10px 0;
   border-radius:12px;
@@ -132,22 +129,24 @@ h1{
 
 .special{
   background:linear-gradient(135deg,var(--pink),var(--rose),var(--lav));
-  box-shadow:0 0 30px rgba(255,150,180,.9);
-  animation:beat 1.6s infinite;
+  box-shadow:0 0 25px rgba(255,150,180,.9);
+  font-weight:bold;
   cursor:pointer;
+  animation:heartbeat 1.6s infinite;
 }
 
-@keyframes beat{
+@keyframes heartbeat{
+  0%,100%{transform:scale(1)}
   50%{transform:scale(1.12)}
 }
 
 .caption{
   margin-top:14px;
-  font-style:italic;
   color:#ffd1dc;
+  font-style:italic;
 }
 
-/* BUTTONS */
+/* buttons */
 .btn-love{
   margin-top:26px;
   padding:14px 36px;
@@ -166,7 +165,7 @@ h1{
   color:#ffd6e0;
 }
 
-/* TEXT */
+/* romantic text */
 .romantic-text{
   margin-top:26px;
   max-width:560px;
@@ -174,41 +173,39 @@ h1{
   padding:18px;
   border-radius:18px;
   line-height:1.9;
+  font-size:.95rem;
   min-height:120px;
 }
 
+/* answer */
 .answer{
   margin-top:22px;
   font-family:'Playfair Display',serif;
   font-size:1.4rem;
   color:#ffb6c1;
   opacity:0;
-  transition:opacity 1s;
+  transition:opacity 1.2s ease;
 }
 .answer.show{opacity:1}
 
-/* MODAL */
+/* modal */
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.65);
+  background:rgba(0,0,0,.6);
   display:none;
   align-items:center;
   justify-content:center;
-  z-index:10;
+  z-index:6;
 }
 .modal.show{display:flex}
 
 .modal-box{
-  background:rgba(255,255,255,.18);
+  background:rgba(255,255,255,.15);
   backdrop-filter:blur(18px);
   border-radius:28px;
   padding:30px;
-  max-width:420px;
-  animation:pop .5s ease;
-}
-@keyframes pop{
-  from{opacity:0;transform:scale(.85)}
+  max-width:440px;
 }
 
 .close{
@@ -217,20 +214,28 @@ h1{
   color:#ffd1dc;
 }
 
-/* HEARTS */
+/* hearts */
 .hearts{
   position:fixed;
   inset:0;
   pointer-events:none;
   z-index:1;
 }
+
 .heart{
   position:absolute;
   bottom:-40px;
   animation:floatUp linear infinite;
 }
+
 @keyframes floatUp{
   to{transform:translateY(-120vh);opacity:0}
+}
+
+@keyframes rgbRomantic{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 </style>
 </head>
@@ -278,14 +283,26 @@ h1{
 const start=new Date("2026-01-18T00:00:00");
 setInterval(()=>{
   const now=new Date();
-  let d=Math.floor((now-start)/86400000);
+  let diff=now-start;
+  const sign=diff>=0;
+  diff=Math.abs(diff);
+
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor(diff/3600000)%24;
+  const m=Math.floor(diff/60000)%60;
+  const s=Math.floor(diff/1000)%60;
+
   document.getElementById("counter").innerHTML=
-    `We have loved each other for<br><b>${Math.abs(d)}</b> days`;
+    sign
+    ? `We have loved each other for<br><b>${d}</b> days ${h} hours ${m} minutes ${s} seconds`
+    : `Counting down <b>${d}</b> days to our beginning`;
 },1000);
 
 /* CALENDAR */
 const cal=document.getElementById("calendar");
-["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(d=>cal.innerHTML+=`<div class="day-name">${d}</div>`);
+["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(d=>{
+  cal.innerHTML+=`<div class="day-name">${d}</div>`;
+});
 for(let i=0;i<4;i++)cal.innerHTML+="<div></div>";
 for(let d=1;d<=31;d++){
   cal.innerHTML+=`<div class="day ${d===18?"special":""}" onclick="${d===18?"showAnswer()":""}">${d}</div>`;
@@ -303,41 +320,60 @@ function startLove(){
   },45);
 }
 
-/* MUSIC FIX */
+/* MUSIC */
 const music=document.getElementById("bgMusic");
 let playing=false;
 function toggleMusic(){
   if(!playing){
-    music.play().then(()=>playing=true);
+    music.volume=0;
+    music.play();
+    let v=0;
+    const f=setInterval(()=>{
+      v+=.04; music.volume=v;
+      if(v>=.5)clearInterval(f);
+    },120);
+    playing=true;
   }else{
-    music.pause();
+    let v=music.volume;
+    const f=setInterval(()=>{
+      v-=.04; music.volume=v;
+      if(v<=0){music.pause();clearInterval(f)}
+    },120);
     playing=false;
   }
 }
 
-/* LETTER FIX */
-function openLetter(){
-  document.getElementById("modal").classList.add("show");
-}
-function closeLetter(){
-  document.getElementById("modal").classList.remove("show");
-}
+/* LETTER */
+function openLetter(){document.getElementById("modal").classList.add("show")}
+function closeLetter(){document.getElementById("modal").classList.remove("show")}
 
-/* HEARTS */
+/* HEARTS FLOAT */
 const hearts=document.getElementById("hearts");
 setInterval(()=>{
   const h=document.createElement("div");
   h.className="heart";
   h.innerHTML=Math.random()>.7?"✨":"❤️";
   h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=14+Math.random()*28+"px";
+  h.style.fontSize=14+Math.random()*26+"px";
+  h.style.opacity=Math.random();
   h.style.animationDuration=6+Math.random()*6+"s";
   hearts.appendChild(h);
-  setTimeout(()=>h.remove(),9000);
-},400);
+  setTimeout(()=>h.remove(),10000);
+},380);
 
+/* LOVE EXPLOSION */
 function showAnswer(){
   document.getElementById("answerText").classList.add("show");
+  for(let i=0;i<90;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=20+Math.random()*34+"px";
+    h.style.animationDuration=2+Math.random()*3+"s";
+    hearts.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  }
 }
 </script>
 
